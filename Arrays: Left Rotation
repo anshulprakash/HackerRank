@@ -11,28 +11,51 @@ public class Solution {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
-        int k = in.nextInt();
+        int d = in.nextInt();
         int a[] = new int[n];
         for(int a_i=0; a_i < n; a_i++){
             a[a_i] = in.nextInt();
         }
-        int count = 0;
-        int index = 0;
-        int value = a[index];
-        int newIndex = 0;
-        k = k % n;
-        if(n > 1){
-            while(count < n){
-                newIndex = (n + index - k) % n;
-                int temp = value;
-                value = a[newIndex];
-                a[newIndex] = temp;
-                index = newIndex;
-                count++;
+        leftRotate(a, d, n);
+        printArray(a, n);
+    }
+    
+    private static void leftRotate(int arr[], int d, int n) 
+    {
+        int i, j, k, temp;
+        for (i = 0; i < gcd(d, n); i++) 
+        {
+            /* move i-th values of blocks */
+            temp = arr[i];
+            j = i;
+            while (1 != 0) 
+            {
+                k = j + d;
+                if (k >= n) 
+                    k = k - n;
+                if (k == i) 
+                    break;
+                arr[j] = arr[k];
+                j = k;
             }
-         }
-         for(int a_i=0; a_i < n; a_i++){
-           System.out.print(a[a_i] + " ");
+            arr[j] = temp;
         }
+    }
+    
+    /* function to print an array */
+    private static void printArray(int arr[], int size) 
+    {
+        int i;
+        for (i = 0; i < size; i++)
+            System.out.print(arr[i] + " ");
+    }
+    
+    /*Fuction to get gcd of a and b*/
+    private static int gcd(int a, int b) 
+    {
+        if (b == 0)
+            return a;
+        else
+            return gcd(b, a % b);
     }
 }
