@@ -1,0 +1,28 @@
+/* https://www.hackerrank.com/challenges/plus-minus */
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        int n = scan.nextInt();
+        int count_pos = 0;
+        int count_neg = 0;
+        int count_zero = 0;
+        int[] arr = new int[n];
+        for(int i = 0 ; i < n ; i++){
+            arr[i] = scan.nextInt();
+        }
+        for(int i = 0 ; i < n ; i++){
+            if(arr[i] > 0){
+                count_pos++;
+            }else if(arr[i] < 0){
+                count_neg++;
+            }else
+                count_zero++;
+        }
+        System.out.println((double)count_pos / n);
+        System.out.println((double)count_neg / n);
+        System.out.println((double)count_zero / n);
+    }
+}
